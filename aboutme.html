@@ -52,6 +52,34 @@
                   </tr>
                 </tbody>
                 </table>
+                <hr>
+                <h2>
+                    Randomized Heap
+                </h2>
+                <blockquote cite="https://titanwolf.org/Network/Articles/Article?AID=58dd962d-87a1-4e85-bea6-16cf0b14ea14#gsc.tab=0">
+                A randomized heap is a heap that, by using a random number generator, allows you to perform all the necessary operations in the logarithmic expected time.               
+                </blockquote>
+                <a href="https://titanwolf.org/Network/Articles/Article?AID=58dd962d-87a1-4e85-bea6-16cf0b14ea14#gsc.tab=0">link to site</a>
+                <pre>
+                    <code>
+                        struct Tree {
+                            int value;
+                            Tree * l = nullptr;
+                            Tree * r = nullptr;
+                        };
+
+                        Tree* merge(Tree* t1, Tree* t2) {
+                            if (!t1 || !t2)
+                                return t1 ? t1 : t2;
+                            if (t2->value < t1->value)
+                                swap(t1, t2);
+                            if (rand() & 1)
+                                swap(t1->l, t1->r);
+                            t1->l = merge(t1->l, t2);
+                            return t1;
+                        }
+                    </code>
+                </pre>
         </body>
     </head>
 </html>
